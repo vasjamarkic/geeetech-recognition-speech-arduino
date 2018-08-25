@@ -5,7 +5,7 @@
 #define BLUE 6
 byte com = 0; 
 int i = 0;    // for switcing colors
-int DIM = 1;
+int DIM = 1;  // for dimming the LED, 3 steps of luminosity
 
 int REDstatus = 0;
 int GREENstatus = 0;
@@ -41,10 +41,10 @@ void loop() {
   com = Serial.read();
   switch(com) {
 
-      case 0x11://command 1 WHITE
+      case 0x11://  command 1 WHITE
       RGBvalues(255,255,255);
       break;
-      case 0x12:  //command 2 is  turn OFF
+      case 0x12:  //command 2 is turn OFF
       RGBvalues(0,0,0);
       break;
       case 0x13: { //command 3 is NEXT color
@@ -80,7 +80,7 @@ void loop() {
       break;
       case 0x14: {   //go back change the color
       i--;
-      if (i < 0) {              // if loop (backward) compledet, go to last color
+      if (i < 0) {              // if loop (backward) completed, go to last color
         i= 11;
         }
       switch (i) {
